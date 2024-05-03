@@ -8,12 +8,12 @@ router.get('/', (req, res) => {
   res.render('pages/dashboard', status);
 })
 
-router.get('/data_guru', (req, res) => {
+router.get('/data-guru', (req, res) => {
   const status = { status: app.locals.connectionStatus };
   res.render('pages/data_guru', status);
 })
 
-router.get('/data_absen', (req, res) => {
+router.get('/data-absen', (req, res) => {
   const status = { status: app.locals.connectionStatus };
   res.render('pages/data_absen', status);
 })
@@ -33,8 +33,9 @@ router.get('/setting', (req, res) => {
   res.render('pages/setting', status);
 })
 
-router.get('/add_guru', (req, res) => {
+router.get('/tambah-guru', (req, res) => {
   const status = { status: app.locals.connectionStatus };
+  const data = { dataUUID: app.locals.dataUUID };
   res.render('pages/add_guru', status);
 })
 

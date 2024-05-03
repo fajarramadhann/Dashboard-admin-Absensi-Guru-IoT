@@ -6,13 +6,12 @@ import { fileURLToPath } from 'url';
 import pageRoute from './routes/routePage.js';
 
 import connectDB from "./config/db.js";
-import { send } from "process";
-import { connect } from "http2";
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
 
-const client = mqtt.connect("wss://jarprojects:pU1p1SKIPuCpjsUk@jarprojects.cloud.shiftr.io");
+// const client = mqtt.connect("wss://jarprojects:pU1p1SKIPuCpjsUk@jarprojects.cloud.shiftr.io");
+const client = mqtt.connect("wss://broker.emqx.io:8084/mqtt");
 const app = express();
 
 // EJS
@@ -31,12 +30,31 @@ connectDB();
 
 // MQTT
 // Subscribe to topic
-const topic = 'absensi_guru';
-client.subscribe(topic, { qos: 1}, (err) => {
+client.subscribe('absensi_guru', { qos: 1}, (err) => {
   if (err){
     console.error("Failed Sub Topic: ", err);
   } else {
-    console.log("Subscribe to topic: ", topic);
+    // console.log("Subscribe to topic", topic);
+    client.on("message", (topic, payload) => {
+      console.log(topic)
+      console.log(payload.toString())
+    })
+  }
+});
+
+// const topic = 'uuid_rfid';
+client.subscribe('uuid_rfid', { qos: 1 }, (err) => {
+  if (err){
+    console.error("Failed Sub Topic: ", err);
+  } else {
+    // console.log("Subscribe to topic: ", topic);
+
+    client.on("message", (topic, payload) => {
+      console.log(topic)
+      console.log(payload.toString())
+      const dataUUID = payload.toString();
+      app.locals.dataUUID = dataUUID; // Menyimpan variabel global
+    })
   }
 });
 
@@ -59,7 +77,7 @@ client.on('connect', () => {
     connectionStatus = 'Terhubung ke Broker';
     app.locals.connectionStatus = connectionStatus; // Menyimpan variabel global
 });
-client.on('error', () => {
+client.on('disconnect', () => {
     console.log('Gagal terhubung ke MQTT broker');
     connectionStatus = 'Terputus';
     app.locals.connectionStatus = connectionStatus; // Menyimpan variabel global
