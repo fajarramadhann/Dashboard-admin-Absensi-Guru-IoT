@@ -1,0 +1,109 @@
+<%- include('../partials/header.ejs') -%>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+
+<%- include('../partials/navbar.ejs') -%>
+<%- include('../partials/sidebar.ejs') -%>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Data Absen Guru </h1>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Data Absen Guru $nama_sekolah</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>Nama Guru</th>
+                <th>Kelas Ajar</th>
+                <th>Mata Pelajaran</th>
+                <th>Tanggal</th>
+                <th>Jam Masuk</th>
+                <th>Jam Pulang</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Fajar</td>
+                <td>RPL</td>
+                <td>Pemograman Dasar</td>
+                <td>27-01-2022</td>
+                <td>07.00</td>
+                <td>15.00</td>
+                <td class="text-success">Hadir tepat waktu</td>
+                <td>delete</td>
+              </tr>
+              <tr>
+                <td>Fajar</td>
+                <td>RPL</td>
+                <td>Pemograman Dasar</td>
+                <td>27-01-2022</td>
+                <td>08.00</td>
+                <td>15.00</td>
+                <td class="text-danger">Hadir terlambat</td>
+                <td>delete</td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <th>Nama Guru</th>
+                <th>Kelas Ajar</th>
+                <th>Mata Pelajaran</th>
+                <th>Tanggal</th>
+                <th>Jam Masuk</th>
+                <th>Jam Pulang</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+  <div class="p-3">
+    <h5>Title</h5>
+    <p>Sidebar content</p>
+  </div>
+</aside>
+<!-- /.control-sidebar -->
+
+<%- include('../partials/footer.ejs') %>    
+  </div>
+
+</body>
+</html>
+
